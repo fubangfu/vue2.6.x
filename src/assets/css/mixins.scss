@@ -1,0 +1,99 @@
+@charset "UTF-8";
+@import "constant";
+
+/*
+ * 清除浮动
+ *------------------------*/
+@mixin clearFix {
+  zoom: 1;
+  *zoom: 1;
+
+  &:after, &:before {
+    display: table;
+    content: " ";
+    height: 0;
+  }
+
+  &:after {
+    clear: both;
+    /*替换inline为block，因为clear:both不能应用于行内元素*/
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+  }
+}
+
+/*
+ * @media
+ *---------------------------------*/
+@mixin media-min-375() {
+  @media (min-width: 375px) {
+    @content;
+  }
+}
+
+@mixin media-max-375() {
+  @media (max-width: 375px) {
+    @content;
+  }
+}
+
+@mixin media-min-480() {
+  @media (min-width: 480px) {
+    @content;
+  }
+}
+
+@mixin media-max-480() {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin media-min-667() {
+  @media (min-width: 667px) {
+    @content;
+  }
+}
+
+@mixin media-max-667() {
+  @media (max-width: 667px) {
+    @content;
+  }
+}
+
+@mixin media-min-767() {
+  @media (min-width: 767px) {
+    @content;
+  }
+}
+
+@mixin media-max-767() {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin media-min-959() {
+  @media (min-width: 959px) {
+    @content;
+  }
+}
+
+@mixin media-max-959() {
+  @media (max-width: 959px) {
+    @content;
+  }
+}
+
+@mixin media-min-1200() {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin media-max-1200() {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}

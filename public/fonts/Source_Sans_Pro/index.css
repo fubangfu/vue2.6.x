@@ -1,0 +1,17 @@
+@charset "UTF-8";
+@font-face {
+    font-family: "Source Sans Pro";
+    src: local("Source Sans Pro"), url("./SourceSansPro-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Source Sans Pro";
+    src: local("Source Sans Pro Light"), url("./SourceSansPro-Light.ttf");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Source Sans Pro";
+    src: local("Source Sans Pro Semibold"), url("./SourceSansPro-Semibold.ttf");
+    font-weight: 600;
+}
