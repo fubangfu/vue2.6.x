@@ -52,6 +52,9 @@ function getRoutes() {
       //
       return pageMapper[path] = {
          ...route,
+         // 延时加载的关键：返回一个函数，而不是直接执行 pageContext( pathStr )
+         // pageContext( pathStr )执行时才会获取对应的组件配置对象，并会返回一个promise
+         // Vue 支持异步组件。
          component : () => pageContext( pathStr )
       };
    } )

@@ -19,6 +19,7 @@ const exampleContext = require.context(
 export default exampleContext.keys().reduce( ( previousValue, currentValue ) => {
    const paths = splitPath( currentValue );
    const path = `/${paths.join( '\/' )}`;
+   // 延时加载组件的关键：返回一个函数，而不是直接执行exampleContext( currentValue )
    previousValue[path] = () => exampleContext( currentValue );
    return previousValue;
 }, {} );
