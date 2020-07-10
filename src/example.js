@@ -1,18 +1,17 @@
 /**
  * 例子
- * 注意1：vue组件和md组件的name名称必须同名（md组件的name名与文件名相同）
+ * 注意1：示例组件和 md组件的name名称必须同名（ md组件的name名默认与文件名相同）
  * 注意2：目录结构层次也必须保持一致
  * @author  fubangfu2015@163.com
  * @data    2020/7/4
  * --------------------------------------
  */
-
 // 获取example目录下所有的vue组件
 const exampleContext = require.context(
     './example',
     true,
     /\.vue$/,
-    'lazy'
+    'lazy' // 懒加载
 );
 
 export default exampleContext.keys().reduce( ( previousValue, currentValue ) => {

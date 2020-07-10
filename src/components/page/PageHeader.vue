@@ -4,7 +4,7 @@
              class="page-header-logo"
              @click="onClick"
              src="../../assets/logo.png">
-        <h1>Aqire UI <span v-html="version"></span></h1>
+        <h1>aqire UI <span v-html="version"></span></h1>
     </div>
 </template>
 

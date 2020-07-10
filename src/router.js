@@ -35,7 +35,7 @@ function getRoutes() {
        './views',
        true,
        /\.md$/,
-       'lazy'
+       'lazy' // 懒加载
    );
    // 解析路径
    pageContext.keys().map( pathStr => {
