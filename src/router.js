@@ -3,6 +3,10 @@ import VueRouter from 'vue-router';
 import navigation from './navigation.json';
 import PageView from './components/page/PageView';
 
+/**
+ * 路由配置，自动将views下的MD组件文档按照目录机构配置路由和导航
+ * 所有路由都是懒加载的
+ */
 Vue.use( VueRouter );
 // 添加__pages__变量，给导航组件使用
 const routes = Vue.prototype.__pages__ = getRoutes();
