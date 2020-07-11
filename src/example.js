@@ -1,7 +1,6 @@
 /**
  * 示例，为MD文档提供组件效果展示
- * 注意1：example目录下的Vue组件的name名称必须和views目录下的MD文档组件的name名称保持一致
- *       MD组件文档的name名默认与文件名相同
+ * 注意1：example目录下的Vue示例组件必须和views目录下的MD文档组件同名
  * 注意2：example目录结构层次也必须和views的目录结构保持一致
  *
  * @author  fubangfu2015@163.com

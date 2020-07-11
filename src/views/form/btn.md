@@ -9,10 +9,6 @@
 
 ```
 
-<!-- 示例代码 begin -->
-<example></example>
-<!-- 示例代码 end -->
-
 
 ### 禁用按钮
 只需要设置组件的`disabled`属性为`true`即可。
@@ -22,7 +18,7 @@
 ```
 
 <!-- 示例代码 begin -->
-<example i="2"></example>
+
 <!-- 示例代码 end -->
 
 

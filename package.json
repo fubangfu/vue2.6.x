@@ -7,6 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "description": "是基于 Vue2.6.x 的 UI 组件库",
+  "keywords": ["vue", "vue ui", "UI", "component"],
   "dependencies": {
     "core-js": "^3.6.5",
     "highlight.js": "^10.1.1",

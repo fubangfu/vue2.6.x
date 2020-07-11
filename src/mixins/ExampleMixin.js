@@ -6,14 +6,14 @@
  */
 export default {
    props   : {
-      i : {
+      name : {
          type    : [Number, String],
          default : 1
       }
    },
    methods : {
-      eq( index ) {
-         return this._q( index, this.i );
+      eq( name ) {
+         return this._q( name, this.name );
       }
    }
 };

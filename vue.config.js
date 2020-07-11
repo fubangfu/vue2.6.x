@@ -20,6 +20,10 @@ module.exports = {
    publicPath          : process.env.NODE_ENV === 'production' ? '' : '/',
    lintOnSave          : true,
    productionSourceMap : false, // 如果您不需要生产时的源映射，那么将此设置为false可以加速生产构建
+   configureWebpack    : {
+      // mode    : 'development',
+      // devtool : 'source-map'
+   },
    chainWebpack        : config => {
       config.module.rule( 'md' )
           .test( /\.md/ )

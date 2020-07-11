@@ -1,12 +1,10 @@
 <template>
-    <div class="tip-warn">
-        <slot></slot>
-    </div>
+    <input>
 </template>
 
 <script>
    export default {
-      name : 'TipWarn'
+      name : 'AqireInput'
    };
 </script>
 

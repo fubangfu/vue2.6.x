@@ -6,10 +6,8 @@
 
 <script lang="js">
    import Vue from 'vue';
-   import PageWarn from './TipWarn';
-   import Example from './Example';
+   import Example from '../Example';
 
-   Vue.component( PageWarn.name, PageWarn );
    Vue.component( Example.name, Example );
 
    export default {
@@ -28,34 +26,6 @@
             margin: 0 auto;
             padding: 20px !important;
             font-size: 16px;
-
-            .demo-block {
-                /*display: none;*/
-                position: relative;
-                border: 1px solid #f8f8f8;
-                border-radius: 2px;
-                padding: 25px 35px;
-                margin-top: 1em;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-                overflow-x: auto;
-
-                &:before {
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    color: #ccc;
-                    text-align: right;
-                    font-size: 0.75em;
-                    padding: 5px 10px 0;
-                    line-height: 15px;
-                    height: 15px;
-                    font-weight: 400;
-                    content: '示例';
-                }
-            }
 
             code.code_inline {
                 color: #e96900;
@@ -89,12 +59,12 @@
 
             h2 {
                 margin-top: 20px;
-                font-size: 1.5em;
+                font-size: 1.6em;
             }
 
             h3 {
                 margin-top: 40px;
-                font-size: 1.17em;
+                font-size: 1.2em;
             }
 
             h4 {
@@ -113,55 +83,47 @@
 
             blockquote {
                 margin: 2em 0;
-                padding-left: 20px;
-                border-left: 4px solid $color-primary;
+                /**/
                 background-color: #f8f8f8;
 
                 p {
+                    padding: 10px 0 10px 20px;
+                    border-left: 4px solid $color-primary;
                     font-weight: 400;
                     margin-left: 0;
                     margin-bottom: 0;
-                    padding-bottom: 0;
                     line-height: 2em;
                 }
-            }
 
-            .tip-warn {
-                margin: 2em 0;
-                padding: 12px 24px;
-                border-left-width: 4px;
-                border-left-style: solid;
-                background-color: #f8f8f8;
-                position: relative;
-                border-bottom-right-radius: 2px;
-                border-top-right-radius: 2px;
-                font-size: 14px;
-                line-height: 22px;
-                border-left-color: #f66;
+                & > blockquote {
+                    position: relative;
 
-                &:before {
-                    position: absolute;
-                    top: 10px;
-                    left: -12px;
-                    color: #fff;
-                    width: 20px;
-                    height: 20px;
-                    border-radius: 100%;
-                    text-align: center;
-                    line-height: 20px;
-                    font-weight: bold;
-                    font-family: "Dosis", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
-                    font-size: 14px;
-                }
+                    &:before {
+                        position: absolute;
+                        top: 10px;
+                        left: -8px;
+                        color: #fff;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 100%;
+                        text-align: center;
+                        line-height: 20px;
+                        font-weight: bold;
+                        font-family: "Dosis", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+                        font-size: 14px;
+                        content: "!";
+                        background-color: #f66;
+                        z-index: 2;
+                    }
 
-                &:before {
-                    content: "!";
-                    background-color: #f66;
+                    p {
+                        border-left-color: #f66;
+                    }
                 }
             }
 
             p, li {
-                font-size: 14px;
+                font-size: 16px;
                 color: #2c3e50;
             }
 
@@ -173,7 +135,7 @@
                 border-collapse: collapse;
                 width: 100%;
                 background-color: #fff;
-                font-size: 14px;
+                font-size: 16px;
                 margin-bottom: 45px;
                 line-height: 1.5em;
 

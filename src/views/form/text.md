@@ -1,28 +1,21 @@
-# Text文本输入框
+# Text输入框
 通过鼠标或键盘输入字符
 
 ### 基础用法
-<tip-warn>
-    Input 为受控组件，它总会显示 Vue 绑定值 。<br>
-    不支持 v-model 修饰符。
-</tip-warn>
 
-<!-- 示例代码 begin -->
-<!-- 示例代码 end -->
+>> Input 为受控组件，它总会显示 Vue 绑定值 。<br>
+>> 支持绑定 v-model 指令，但不支持其修饰符功能。
 
-```html
 
-```
-
-### 禁用输入框
-设置`disabled`属性，可控制是否禁止输入。
-
-<!-- 示例代码 begin -->
-<!-- 示例代码 end -->
+<example name="first">
 
 ```html
-
+ <aqire-input placeholder="请输入内容"></aqire-input>
 ```
+
+</example>
+
+
 
 ### 密码输入
 设置`password`属性，可输入密码。
@@ -67,6 +60,15 @@ new Vue ( {
 } );
 ```
 
+### 禁用输入框
+设置`disabled`属性，可控制是否禁止输入。
+
+<!-- 示例代码 begin -->
+<!-- 示例代码 end -->
+
+```html
+
+```
 
 ### 可清除
 设置 `clearable`属性，可使输入的内容全部清空。
