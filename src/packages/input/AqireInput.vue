@@ -1,5 +1,10 @@
 <template>
-    <input :type="nativeType"
+    <textarea v-if="isTextarea"
+              v-bind="$attrs"
+              v-on="listeners"
+              class="aqire-input"></textarea>
+    <input v-else
+           :type="nativeType"
            v-bind="$attrs"
            v-on="listeners"
            class="aqire-input">
@@ -51,12 +56,17 @@
             const type = this.type;
             return isBlank( this.type ) ? 'text' : type;
          },
+         // 标签名称
+         isTextarea() {
+            return this.inputType === 'textarea';
+         },
          // 原生类型
          nativeType() {
             const inputType = this.inputType;
-            return inputType === 'text'
-            || inputType === 'textarea'
-                ? inputType : 'text';
+            return inputType === 'password'
+                ? inputType : (
+                    inputType !== 'textarea' && 'text'
+                );
          },
          // class
          className() {

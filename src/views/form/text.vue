@@ -1,7 +1,7 @@
 <template>
     <div v-if="eq('first')">
         <aqire-input
-                type="text"
+                type="number"
                 maxlength="5"
                 v-model="text"
                 placeholder="请输入内容"/>
@@ -14,7 +14,7 @@
    import AqireInput from '../../packages/input/AqireInput';
 
    export default {
-      name       : 'textt',
+      name       : 'api-text',
       components : { AqireInput },
       mixins     : [ExampleMixin],
       data() {
