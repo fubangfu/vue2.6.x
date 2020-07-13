@@ -166,7 +166,7 @@
 
             code, span {
                 font-family: "Roboto Mono", Monaco, courier, monospace;
-                font-size: 0.9em;
+                font-size: 14px;
                 /*letter-spacing: 0.1em;*/
             }
 

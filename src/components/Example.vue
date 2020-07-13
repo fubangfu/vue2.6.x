@@ -101,12 +101,16 @@
                 font-size: 14px;
                 color: #d3dce6;
             }
+        }
 
-            &:hover {
-                cursor: pointer;
-
+        &:hover {
+            .example-open {
                 span {
                     color: inherit;
+                }
+
+                &:hover {
+                    cursor: pointer;
                 }
             }
         }

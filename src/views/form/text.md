@@ -15,7 +15,9 @@
 ```js
 export default {
    data(){
-      return { text : 'v-model绑定值' }
+      return { 
+         text : 'v-model绑定值'
+     };
    }
 }
 ```
