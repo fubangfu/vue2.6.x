@@ -5,18 +5,20 @@
  * --------------------------------------
  */
 import AqireInput from './packages/input/AqireInput';
+import { isGlobal } from '@aqire/common/src/type';
 
 const components = [
    AqireInput
 ];
 
-function install( Vue, opts = {} ) {
+function install( Vue ) {
    components.forEach( component => {
-      if ( component.CONFIG && opts[component.name] ) {
-         component.CONFIG( opts[component.name] );
-      }
       Vue['component']( component.name, component );
    } );
+}
+
+if ( isGlobal( window ) && window.Vue ) {
+   install( window.Vue );
 }
 
 export default {

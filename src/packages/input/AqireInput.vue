@@ -2,38 +2,25 @@
     <textarea v-if="isTextarea"
               v-bind="$attrs"
               v-on="listeners"
+              :readonly="readonly"
+              :disabled="disabled"
               class="aqire-input"></textarea>
     <input v-else
            :type="nativeType"
            v-bind="$attrs"
            v-on="listeners"
+           :readonly="readonly"
+           :disabled="disabled"
            class="aqire-input">
 </template>
 
 <script>
-   import { isBlank, isFunc } from '@aqire/common/src/type';
-   import createConfig from '../config';
+   import { isBlank } from '@aqire/common/src/type';
    import { trimStr } from '@aqire/common/src/lang/string';
    import { addVNodeListener, callVNodeListener } from '../util/VNode';
 
-   // 默认配置
-   const DEFAULT_CONFIG = {
-      type : {
-         number() {
-
-         },
-         text( value ) {
-            return value;
-         }
-      }
-   };
-
-   // 配置
-   const { CONFIG, configs } = createConfig( 'AqireInput', DEFAULT_CONFIG );
-
    export default {
       name     : 'AqireInput',
-      configs,
       props    : {
          // 类型
          type     : String,
@@ -44,7 +31,12 @@
          // 禁用
          disabled : Boolean,
          // 只读
-         readonly : Boolean
+         readonly : Boolean,
+         // 格式化
+         format   : {
+            type    : Function,
+            default : v => v
+         }
       },
       model    : {
          prop  : 'value',
@@ -72,14 +64,9 @@
          className() {
             return `aqire-input-${this.inputType}`;
          },
-         // 类型输入处理器
-         typeHandler() {
-            const { inputType, trim } = this;
-            const handle = CONFIG.type[inputType] || DEFAULT_CONFIG.type[inputType];
-            const handler = isFunc( handle ) ? handle : DEFAULT_CONFIG.type.text;
-            return function ( value ) {
-               return handler( trim ? trimStr( value ) : value );
-            };
+         // 格式化处理器
+         handleFormat() {
+            return !this.trim ? this.format : value => this.format( trimStr( value ) );
          },
          // 输入事件
          inputEvent() {
@@ -87,26 +74,31 @@
          },
          // 绑定事件
          listeners() {
-            const { inputEvent, inputHandler, $listeners } = this;
+            const { inputEvent, handleInput, $listeners, handleCompositionStart, handleCompositionEnd } = this;
             const listeners = { ...$listeners };
-            addVNodeListener( true, listeners, inputEvent, inputHandler );
+            addVNodeListener( true, listeners, inputEvent, handleInput );
+            addVNodeListener( listeners, 'compositionstart', handleCompositionStart );
+            addVNodeListener( listeners, 'compositionend', handleCompositionEnd );
             return listeners;
          }
       },
       methods  : {
          // 输入事件处理器
-         inputHandler( event ) {
-            if ( this.isComposing ) return;
-            const typeHandler = this.typeHandler;
-            event.target.value = typeHandler( event.target.value );
-            this.$emit( 'update:value', event.target.value );
+         handleInput( event ) {
+            if ( this.isComposing ) {
+               return;
+            }
+            this.$emit(
+                'update:value',
+                event.target.value = this.handleFormat( event.target.value )
+            );
          },
          // 输入法启动
-         compositionStartHandler() {
+         handleCompositionStart() {
             this.isComposing = true;
          },
          // 输入法结束
-         compositionEndHandler( event ) {
+         handleCompositionEnd( event ) {
             if ( this.isComposing ) {
                const { listeners, inputEvent } = this;
                this.isComposing = false;
