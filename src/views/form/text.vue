@@ -1,11 +1,15 @@
 <template>
     <div v-if="eq('first')">
         <aqire-input
-                type="number"
-                maxlength="5"
-                v-model="text"
-                placeholder="请输入内容"/>
-        <div>input: {{text}}</div>
+            type="number"
+            maxlength="20"
+            v-model="text"
+            placeholder="请输入内容"/>
+        <aqire-input
+            type="number"
+            maxlength="20"
+            v-model="text"
+            placeholder="请输入内容"/>
     </div>
 </template>
 

@@ -16,16 +16,15 @@
 </script>
 
 <style lang="scss">
-    @import "../../assets/css/mixins";
+    @import "../../assets/css/app";
 
     .code-page {
         section {
             font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
-            /*font-family: "Microsoft YaHei", sans-serif;*/
             position: relative;
             margin: 0 auto;
             padding: 20px !important;
-            font-size: 16px;
+            font-size: $font-size-middle;
 
             code.code_inline {
                 color: #e96900;
@@ -34,7 +33,7 @@
                 border-radius: 2px;
                 white-space: nowrap;
                 font-family: "Roboto Mono", Monaco, courier, monospace;
-                font-size: 0.8em;
+                font-size: $font-size-middle * 0.8;
                 background-color: #f8f8f8;
                 -webkit-font-smoothing: initial;
             }
@@ -45,8 +44,8 @@
             }
 
             p, ul, ol {
-                line-height: 2em;
-                margin: 0.5em 0;
+                line-height: $font-size-middle*2;
+                margin: $font-size-middle/2 0;
                 position: relative;
                 z-index: 1;
             }
@@ -54,17 +53,17 @@
             h1, h2, h3 {
                 font-weight: 600;
                 color: #2c3e50;
-                font-size: 2em;
+                font-size: $font-size-middle*2;
             }
 
             h2 {
                 margin-top: 20px;
-                font-size: 1.6em;
+                font-size: $font-size-middle*1.6;
             }
 
             h3 {
                 margin-top: 40px;
-                font-size: 1.2em;
+                font-size: $font-size-middle*1.2;
             }
 
             h4 {
@@ -74,15 +73,15 @@
             }
 
             ul, ol {
-                line-height: 1.6em;
-                padding-bottom: 1.2em;
+                line-height: $font-size-middle*1.6;
+                padding-bottom: $font-size-middle*1.2;
                 position: relative;
                 z-index: 1;
-                padding-left: 1.5em;
+                padding-left: $font-size-middle*1.5;
             }
 
             blockquote {
-                margin: 2em 0;
+                margin: $font-size-middle*2 0;
                 /**/
                 background-color: #f8f8f8;
 
@@ -92,7 +91,7 @@
                     font-weight: 400;
                     margin-left: 0;
                     margin-bottom: 0;
-                    line-height: 2em;
+                    line-height: $font-size-middle*2;
                 }
 
                 & > blockquote {
@@ -100,8 +99,7 @@
 
                     &:before {
                         position: absolute;
-                        top: 10px;
-                        left: -8px;
+                        @include topLeft(10px, -8px);
                         color: #fff;
                         width: 20px;
                         height: 20px;
@@ -137,7 +135,7 @@
                 background-color: #fff;
                 font-size: 16px;
                 margin-bottom: 45px;
-                line-height: 1.5em;
+                line-height: $font-size-middle*1.5;
 
                 th:first-child {
                     padding-left: 10px;
@@ -158,20 +156,20 @@
         pre {
             overflow-x: auto;
             background-color: #f8f8f8;
-            line-height: 1.1em;
+            line-height: $font-size-middle*1.1;
             border-radius: 2px;
             position: relative;
-            margin: 1.2em 0;
+            margin: $font-size-middle*1.2 0;
             padding: 20px;
 
             code, span {
                 font-family: "Roboto Mono", Monaco, courier, monospace;
-                font-size: 14px;
+                font-size: $font-base-size;
                 /*letter-spacing: 0.1em;*/
             }
 
             code {
-                line-height: 1.6em;
+                line-height: $font-base-size*1.6;
 
                 &:before {
                     position: absolute;
@@ -179,7 +177,7 @@
                     right: 0;
                     color: #ccc;
                     text-align: right;
-                    font-size: 0.75em;
+                    font-size: $font-base-size*0.75;
                     padding: 5px 10px 0;
                     line-height: 15px;
                     height: 15px;
@@ -217,7 +215,7 @@
                 }
 
                 .hljs-tag {
-                    min-height: 1.5em;
+                    min-height: $font-base-size*1.5;
                 }
 
                 .hljs-comment {

@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import "constant";
+@import "./constant";
 
 /*
  * 清除浮动
@@ -112,7 +112,7 @@
 /*
  * 样式过渡
  *---------------------------------*/
-@mixin transition($duration:.3s,$timingFn:$bezier-ease-in-out,$style...) {
+@mixin transition($duration,$timingFn,$style...) {
   @if length($style) > 0 {
     $lists: ();
     @each $c in $style {
@@ -124,6 +124,9 @@
   }
 }
 
+@mixin transitionStyles($style...) {
+  @include transition(.3s, $bezier-ease-in-out, $style...)
+}
 
 /*
  * 使里面的元素垂直居中

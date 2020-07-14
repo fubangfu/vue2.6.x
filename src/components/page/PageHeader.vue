@@ -26,19 +26,14 @@
 
 <style scoped lang="scss">
 
-    @import "../../assets/css/mixins";
+    @import "../../assets/css/app";
 
     .page-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
         height: 60px;
         padding: 10px 20px;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
-        transition: background-color 0.3s $bezier-ease-in-out;
-        z-index: 11;
         background: #fff;
+        @include transitionStyles(background-color);
 
         h1 {
             display: inline-block;
@@ -50,8 +45,8 @@
             color: $color-primary;
 
             span {
-                color: #34495e;
-                font-size: 14px;
+                color: $font-base-color;
+                font-size: $font-base-size;
             }
         }
 
@@ -61,7 +56,7 @@
             max-width: 100%;
             max-height: 100%;
             display: inline-block;
-            margin-left: 1em;
+            margin-left: $font-base-size;
 
             &:hover {
                 cursor: pointer;

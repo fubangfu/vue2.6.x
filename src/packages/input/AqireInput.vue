@@ -77,8 +77,8 @@
             const { inputEvent, handleInput, $listeners, handleCompositionStart, handleCompositionEnd } = this;
             const listeners = { ...$listeners };
             addVNodeListener( true, listeners, inputEvent, handleInput );
-            addVNodeListener( listeners, 'compositionstart', handleCompositionStart );
-            addVNodeListener( listeners, 'compositionend', handleCompositionEnd );
+            addVNodeListener( true, listeners, 'compositionstart', handleCompositionStart );
+            addVNodeListener( true, listeners, 'compositionend', handleCompositionEnd );
             return listeners;
          }
       },

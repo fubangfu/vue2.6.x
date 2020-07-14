@@ -51,7 +51,7 @@
 
 <style scoped lang="scss">
 
-    @import "../../assets/css/mixins";
+    @import "../../assets/css/app";
 
     .sidebar {
         font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
@@ -66,36 +66,35 @@
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
 
         .nav-page {
-            width: 260px;
             padding: 20px 0;
 
             ul {
                 list-style-type: none;
                 margin: 0;
-                line-height: 1.5em;
-                font-size: 1em;
+                line-height: 21px;
+                font-size: $font-base-size;
             }
 
             .menu-root {
                 padding-left: 0;
 
                 & > li {
-                    margin-top: 1em;
+                    margin-top: $font-base-size;
 
                     h3 {
                         font-weight: 600;
-                        color: #2c3e50;
-                        padding-left: 1em;
+                        color: $font-base-color;
+                        padding-left: $font-base-size;
                     }
 
                     .menu-sub {
-                        margin-top: .85em;
+                        margin-top: 10px;
 
                         & li {
-                            padding-left: 2em;
-                            font-size: 16px;
-                            line-height: 1.5em;
-                            transition: background-color .2s $bezier-ease-in-out;
+                            padding-left: $font-base-size * 2;
+                            font-size: $font-size-middle;
+                            line-height: $font-base-size * 2;
+                            @include transitionStyles(background-color, color);
 
                             &:hover {
                                 background-color: rgba(62, 175, 124, 0.1);
@@ -106,8 +105,8 @@
                     }
 
                     a.sidebar-link {
-                        transition: color .3s $bezier-ease-out;
                         display: block;
+                        @include transitionStyles(color);
 
                         &:hover {
                             color: $color-primary;
