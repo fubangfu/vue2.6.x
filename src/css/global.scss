@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/**
+ * 全局
+ * @author      fubangfu2015@163.com
+ * @date        2020/7/21
+ * --------------------------------------------
+ */
+@import "constant";
+
+[class^=#{$global-namespace}] {
+  &,
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}

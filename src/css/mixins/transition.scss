@@ -1,5 +1,10 @@
 @charset "UTF-8";
-/* transition */
+/**
+ * 样式过渡
+ * @author      fubangfu2015@163.com
+ * @date        2020/7/21
+ * --------------------------------------------
+ */
 $bezier-ease-out: cubic-bezier(0.215, 0.61, 0.355, 1); // 默认后缓动
 $bezier-ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19); // 默认前缓动
 $bezier-ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1); // 默认前后缓动
@@ -14,10 +19,27 @@ $bezier-ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06); // quint 前缓�
 $bezier-ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1); // quint 前后缓动
 
 $transition-all: all .3s $bezier-ease-in-out !default;
-$transition-fade: opacity 300ms $bezier-ease-out-quint !default;
-$transition-fade-linear: opacity 200ms linear !default;
-$transition-md-fade: transform 300ms $bezier-ease-out-quint, opacity 300ms $bezier-ease-out-quint !default;
+$transition-fade: opacity .3s $bezier-ease-out-quint !default;
+$transition-fade-linear: opacity .2s linear !default;
+$transition-md-fade: transform .3s $bezier-ease-out-quint, opacity 300ms $bezier-ease-out-quint !default;
 $transition-border: border-color .2s $bezier-ease-in-out !default;
 $transition-color: color .2s $bezier-ease-in-out !default;
 $transition-size: width .2s $bezier-ease-in-out, height .2s $bezier-ease-in-out !default;
 $transition-svg: all .3s $bezier-ease-in-out !default;
+
+
+@mixin transition($duration,$timingFn,$style...) {
+  @if length($style) > 0 {
+    $lists: ();
+    @each $c in $style {
+      $lists: append($lists, #{$c} $duration $timingFn, comma);
+    }
+    transition: $lists
+  } @else {
+    transition: all $duration $timingFn;
+  }
+}
+
+@mixin transitionStyles($style...) {
+  @include transition(.3s, $bezier-ease-in-out, $style...)
+}
