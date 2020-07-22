@@ -13,6 +13,8 @@ const exampleContext = require.context(
     'lazy' // 懒加载
 );
 
+const exampleContext2 = null;
+
 export default exampleContext.keys().reduce( ( previousValue, currentValue ) => {
    const paths = splitPath( currentValue );
    const path = `/${paths.join( '\/' )}`;

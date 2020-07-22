@@ -33,7 +33,7 @@
         padding: 10px 20px;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
         background: #fff;
-        @include transitionStyles(background-color);
+        @include transition(background-color);
 
         h1 {
             display: inline-block;

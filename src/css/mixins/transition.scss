@@ -5,41 +5,65 @@
  * @date        2020/7/21
  * --------------------------------------------
  */
-$bezier-ease-out: cubic-bezier(0.215, 0.61, 0.355, 1); // 默认后缓动
-$bezier-ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19); // 默认前缓动
-$bezier-ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1); // 默认前后缓动
-$bezier-ease-out-back: cubic-bezier(0.18, 0.89, 0.32, 1.28); // 结束回动
-$bezier-ease-in-back: cubic-bezier(0.6, -0.3, 0.74, 0.05); // 开始回动
-$bezier-ease-in-out-back: cubic-bezier(0.68, -0.55, 0.27, 1.55); // 前后回动
-$bezier-ease-out-circe: cubic-bezier(0.08, 0.82, 0.17, 1); // 圆形后缓动
-$bezier-ease-in-circe: cubic-bezier(0.6, 0.04, 0.98, 0.34); // 圆形前缓动
-$bezier-ease-in-out-circe: cubic-bezier(0.78, 0.14, 0.15, 0.86); // 圆形前后缓动
-$bezier-ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1); // quint 后缓动
-$bezier-ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06); // quint 前缓动
-$bezier-ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1); // quint 前后缓动
+$--bezier-ease-out: cubic-bezier(0.215, 0.61, 0.355, 1); // 默认后缓动
+$--bezier-ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19); // 默认前缓动
+$--bezier-ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1); // 默认前后缓动
+$--bezier-ease-out-back: cubic-bezier(0.18, 0.89, 0.32, 1.28); // 结束回动
+$--bezier-ease-in-back: cubic-bezier(0.6, -0.3, 0.74, 0.05); // 开始回动
+$--bezier-ease-in-out-back: cubic-bezier(0.68, -0.55, 0.27, 1.55); // 前后回动
+$--bezier-ease-out-circe: cubic-bezier(0.08, 0.82, 0.17, 1); // 圆形后缓动
+$--bezier-ease-in-circe: cubic-bezier(0.6, 0.04, 0.98, 0.34); // 圆形前缓动
+$--bezier-ease-in-out-circe: cubic-bezier(0.78, 0.14, 0.15, 0.86); // 圆形前后缓动
+$--bezier-ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1); // quint 后缓动
+$--bezier-ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06); // quint 前缓动
+$--bezier-ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1); // quint 前后缓动
 
-$transition-all: all .3s $bezier-ease-in-out !default;
-$transition-fade: opacity .3s $bezier-ease-out-quint !default;
-$transition-fade-linear: opacity .2s linear !default;
-$transition-md-fade: transform .3s $bezier-ease-out-quint, opacity 300ms $bezier-ease-out-quint !default;
-$transition-border: border-color .2s $bezier-ease-in-out !default;
-$transition-color: color .2s $bezier-ease-in-out !default;
-$transition-size: width .2s $bezier-ease-in-out, height .2s $bezier-ease-in-out !default;
-$transition-svg: all .3s $bezier-ease-in-out !default;
+$--transition-all: all .3s $--bezier-ease-in-out !default;
+$--transition-fade: opacity .3s $--bezier-ease-out-quint !default;
+$--transition-fade-linear: opacity .2s linear !default;
+$--transition-md-fade: transform .3s $--bezier-ease-out-quint, opacity 300ms $--bezier-ease-out-quint !default;
+$--transition-border: border-color .2s $--bezier-ease-in-out !default;
+$--transition-color: color .2s $--bezier-ease-in-out !default;
+$--transition-size: width .2s $--bezier-ease-in-out, height .2s $--bezier-ease-in-out !default;
+$--transition-svg: all .3s $--bezier-ease-in-out !default;
 
-
-@mixin transition($duration,$timingFn,$style...) {
-  @if length($style) > 0 {
-    $lists: ();
-    @each $c in $style {
-      $lists: append($lists, #{$c} $duration $timingFn, comma);
-    }
-    transition: $lists
-  } @else {
-    transition: all $duration $timingFn;
+@mixin transition($styles,$duration:.3s,$timing:$--bezier-ease-in-out) {
+  $lists: ();
+  @each $c in $styles {
+    $lists: append($lists, #{$c} $duration $timing, comma);
   }
+  transition: $lists
 }
 
-@mixin transitionStyles($style...) {
-  @include transition(.3s, $bezier-ease-in-out, $style...)
+@mixin transitionAll() {
+  transition: $--transition-all;
+}
+
+/* 淡入 */
+@mixin transitionFade() {
+  transition: $--transition-fade;
+}
+
+@mixin transitionFadeLinear() {
+  transition: $--transition-fade-linear;
+}
+
+@mixin transitionMdFade() {
+  transition: $--transition-md-fade;
+}
+
+@mixin transitionBorder() {
+  transition: $--transition-border;
+}
+
+@mixin transitionColor() {
+  transition: $--transition-color;
+}
+
+@mixin transitionSize() {
+  transition: $--transition-size;
+}
+
+@mixin transitionSVG() {
+  transition: $--transition-svg;
 }

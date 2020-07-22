@@ -3,11 +3,11 @@
  * @author      fubangfu2015@163.com
  * @date        2020/7/21
  *
- * const em = bemHelper('btn')                        s-btn
+ * const em = bemHelper('btn')                  s-btn
  * em('wrap')                                   s-btn-wrap
  * em({ mini:true })                            s-btn-mini
  * em('wrap',{ mini:true })                     s-btn-wrap-mini
- * em('wrap',{ mini:true, small : true })       s-btn-wrap-mini s-btn-wrap-small
+ * em('wrap',{ mini:true, small:true })       s-btn-wrap-mini s-btn-wrap-small
  * -------------------------------------------------------------------------------
  */
 const NAMESPACE = 'aqire';
@@ -40,15 +40,12 @@ export function bemHelper( block ) {
       throw new Error( '"block" must be a string.' );
    }
    return function be( element, modifier ) {
-
       if ( typeof element !== 'string' ) {
          modifier = element;
          element = '';
       }
-      return modifiers(
-          prefix( block, element ),
-          modifier
-      );
+
+      return modifiers( prefix( block, element ), modifier );
    };
 }
 

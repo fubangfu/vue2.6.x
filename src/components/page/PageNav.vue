@@ -94,7 +94,7 @@
                             padding-left: $font-base-size * 2;
                             font-size: $font-size-middle;
                             line-height: $font-base-size * 2;
-                            @include transitionStyles(background-color, color);
+                            @include transition((background-color, color));
 
                             &:hover {
                                 background-color: rgba(62, 175, 124, 0.1);
@@ -106,7 +106,7 @@
 
                     a.sidebar-link {
                         display: block;
-                        @include transitionStyles(color);
+                        @include transition(color);
 
                         &:hover {
                             color: $color-primary;
