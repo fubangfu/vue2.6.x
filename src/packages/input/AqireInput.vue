@@ -1,17 +1,24 @@
 <template>
-    <textarea v-if="isTextarea"
-              v-bind="$attrs"
-              v-on="listeners"
-              :readonly="readonly"
-              :disabled="disabled"
-              class="aqire-input"></textarea>
-    <input v-else
-           :type="nativeType"
-           v-bind="$attrs"
-           v-on="listeners"
-           :readonly="readonly"
-           :disabled="disabled"
-           class="aqire-input">
+    <component :is="needWrap ? 'div' : 'AqireChild'"
+               class="aqire-input-wrap"
+               :class="className">
+        <!-- textarea -->
+        <textarea v-if="isTextarea"
+                  v-bind="$attrs"
+                  v-on="listeners"
+                  :readonly="readonly"
+                  :disabled="disabled"
+                  class="aqire-input"></textarea>
+        <!-- input text -->
+        <input v-else
+               :type="nativeType"
+               v-bind="$attrs"
+               v-on="listeners"
+               :readonly="readonly"
+               :disabled="disabled"
+               class="aqire-input">
+
+    </component>
 </template>
 
 <script>
@@ -23,17 +30,19 @@
       name     : 'AqireInput',
       props    : {
          // 类型
-         type     : String,
+         type      : String,
          // 去除两边的空格
-         trim     : Boolean,
+         trim      : Boolean,
          // 使用change事件替换input事件
-         lazy     : Boolean,
+         lazy      : Boolean,
          // 禁用
-         disabled : Boolean,
+         disabled  : Boolean,
          // 只读
-         readonly : Boolean,
+         readonly  : Boolean,
+         // 清除
+         cleanable : Boolean,
          // 格式化
-         format   : {
+         format    : {
             type    : Function,
             default : v => v
          }
@@ -63,6 +72,11 @@
          // class
          className() {
             return `aqire-input-${this.inputType}`;
+         },
+         //
+         needWrap() {
+            return this.isTextarea
+                || this.cleanable;
          },
          // 格式化处理器
          handleFormat() {
@@ -108,9 +122,3 @@
       }
    };
 </script>
-
-<style scoped lang="scss">
-    .aqire-input {
-
-    }
-</style>
