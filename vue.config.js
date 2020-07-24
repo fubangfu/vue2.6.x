@@ -4,9 +4,23 @@
  * @date        2020/4/26
  * --------------------------------------------
  */
-const webpack = require( 'webpack' );
+const { create } = require( '../../scripts/global.replace' );
 
-process.env.VUE_APP_VERSION = require( './package.json' ).version;
+const replacements = create(
+    0,
+    false,
+    true,
+    false,
+    false,
+    false,
+    false
+);
+
+Object.keys( replacements ).forEach( key => {
+   process.env[`VUE_APP${key}`] = replacements[key];
+} );
+
+process.env.VUE_APP__VERSION__ = require( './package.json' ).version;
 
 function wrapCode( render ) {
    return function ( ...args ) {
@@ -27,9 +41,6 @@ module.exports = {
       // devtool : 'source-map'
    },
    chainWebpack        : config => {
-
-      config.plugin( 'aqire-replace' )
-          .use( webpack.DefinePlugin, [] );
 
       config.module.rule( 'md' )
           .test( /\.md/ )

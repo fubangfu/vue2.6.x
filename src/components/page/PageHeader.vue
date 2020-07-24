@@ -4,7 +4,7 @@
              class="page-header-logo"
              @click="onClick"
              src="../../assets/logo.png">
-        <h1>aqire UI <span v-html="version"></span></h1>
+        <h1>{{name}} UI <span v-html="version"></span></h1>
     </div>
 </template>
 
@@ -13,7 +13,8 @@
       name    : 'PageHeader',
       data() {
          return {
-            version : process.env.VUE_APP_VERSION
+            name    : process.env.VUE_APP__NAMESPACE__,
+            version : process.env.VUE_APP__VERSION__
          };
       },
       methods : {
