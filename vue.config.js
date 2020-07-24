@@ -4,6 +4,8 @@
  * @date        2020/4/26
  * --------------------------------------------
  */
+const webpack = require( 'webpack' );
+
 process.env.VUE_APP_VERSION = require( './package.json' ).version;
 
 function wrapCode( render ) {
@@ -25,6 +27,10 @@ module.exports = {
       // devtool : 'source-map'
    },
    chainWebpack        : config => {
+
+      config.plugin( 'aqire-replace' )
+          .use( webpack.DefinePlugin, [] );
+
       config.module.rule( 'md' )
           .test( /\.md/ )
           .use( 'vue-loader' )
