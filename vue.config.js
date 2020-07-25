@@ -52,6 +52,9 @@ module.exports = {
           .options( {
              raw     : true,
              linkify : false,
+             /* highlight( str, lang ) {
+                 return str;
+              },*/
              // 定义处理规则
              preprocess( MarkdownIt, source ) {
                 const rules = MarkdownIt.renderer.rules;

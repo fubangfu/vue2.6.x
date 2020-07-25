@@ -17,7 +17,6 @@
                :readonly="readonly"
                :disabled="disabled"
                class="aqire-input">
-
     </component>
 </template>
 
@@ -25,10 +24,12 @@
    import { isBlank } from '@aqire/common/src/type';
    import { trimStr } from '@aqire/common/src/lang/string';
    import { addVNodeListener, callVNodeListener } from '../util/VNode';
+   import AqireChild from '../dynamic/AqireChild';
 
    export default {
-      name     : 'AqireInput',
-      props    : {
+      name       : 'AqireInput',
+      components : { AqireChild },
+      props      : {
          // 类型
          type      : String,
          // 去除两边的空格
@@ -47,11 +48,11 @@
             default : v => v
          }
       },
-      model    : {
+      model      : {
          prop  : 'value',
          event : 'update:value'
       },
-      computed : {
+      computed   : {
          // 控件类型
          inputType() {
             const type = this.type;
@@ -96,7 +97,7 @@
             return listeners;
          }
       },
-      methods  : {
+      methods    : {
          // 输入事件处理器
          handleInput( event ) {
             if ( this.isComposing ) {
