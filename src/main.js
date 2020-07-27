@@ -4,6 +4,7 @@ import router from './router';
 import store from './store';
 import './assets/css/reset.scss';
 import 'highlight.js/styles/color-brewer.css';
+import './index';
 
 Vue.config.productionTip = false;
 

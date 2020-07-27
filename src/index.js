@@ -6,6 +6,7 @@
  */
 import AqireInput from './packages/input/AqireInput';
 import { isGlobal } from '@aqire/common/src/type';
+import './packages/theme/index.scss';
 
 const components = [
    AqireInput

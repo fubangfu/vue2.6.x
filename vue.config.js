@@ -46,9 +46,14 @@ module.exports = {
           .options( {
              raw     : true,
              linkify : false,
-             /* highlight( str, lang ) {
-                 return str;
-              },*/
+             /*highlight( str, lang ) {
+                if ( lang === 'demo' ) {
+                   console.log( '>>>>>>>>>>>>>>>>>>>>>>>' );
+                   console.log( str );
+                   console.log( '>>>>>>>>>>>>>>>>>>>>>>>' );
+                }
+                return str;
+             },*/
              // 定义处理规则
              preprocess( MarkdownIt, source ) {
                 const rules = MarkdownIt.renderer.rules;
