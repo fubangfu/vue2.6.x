@@ -4,17 +4,11 @@
  * @date        2020/4/26
  * --------------------------------------------
  */
-const { create } = require( '../../scripts/global.replace' );
 
-const replacements = create(
-    0,
-    false,
-    true,
-    false,
-    false,
-    false,
-    false
-);
+const replacements = {
+   __NAMESPACE__ : 'aqire',
+   __VERSION__   : require( './package.json' ).version
+};
 
 Object.keys( replacements ).forEach( key => {
    process.env[`VUE_APP${key}`] = replacements[key];

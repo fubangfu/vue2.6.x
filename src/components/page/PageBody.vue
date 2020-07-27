@@ -159,7 +159,7 @@
             line-height: $font-size-middle*1.1;
             border-radius: 2px;
             position: relative;
-            margin: $font-size-middle*1.2 0;
+            margin: $font-size-middle * 1.2 0;
             padding: 20px;
 
             code, span {
@@ -169,7 +169,7 @@
             }
 
             code {
-                line-height: $font-base-size*1.6;
+                line-height: $font-base-size * 1.8;
 
                 &:before {
                     position: absolute;
@@ -177,7 +177,7 @@
                     right: 0;
                     color: #ccc;
                     text-align: right;
-                    font-size: $font-base-size*0.75;
+                    font-size: $font-base-size * 0.75;
                     padding: 5px 10px 0;
                     line-height: 15px;
                     height: 15px;
