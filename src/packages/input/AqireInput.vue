@@ -1,14 +1,16 @@
 <template>
-    <component :is="needWrap ? 'div' : 'AqireChild'"
-               class="aqire-input-wrap"
-               :class="className">
+    <component
+        :is="needWrap ? 'div' : 'AqireChild'"
+        class="aqire-input-wrap"
+        :class="className">
         <!-- textarea -->
-        <textarea v-if="isTextarea"
-                  v-bind="$attrs"
-                  v-on="listeners"
-                  :readonly="readonly"
-                  :disabled="disabled"
-                  class="aqire-input"></textarea>
+        <textarea
+            v-if="isTextarea"
+            v-bind="$attrs"
+            v-on="listeners"
+            :readonly="readonly"
+            :disabled="disabled"
+            class="aqire-input"/>
         <!-- input text -->
         <input v-else
                :type="nativeType"
