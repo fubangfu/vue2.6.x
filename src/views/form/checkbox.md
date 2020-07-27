@@ -1,4 +1,4 @@
 
-```html
+```demo
 <example></example>
 ```

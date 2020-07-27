@@ -1,6 +1,6 @@
 <template>
     <div v-if="eq(1)">
-        <div></div>
+        <div>123123</div>
     </div>
 </template>
 
@@ -14,6 +14,6 @@
 </script>
 
 <style scoped lang="scss">
-    
+
 
 </style>
