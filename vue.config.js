@@ -4,7 +4,6 @@
  * @date        2020/4/26
  * --------------------------------------------
  */
-// const hljs = require( 'highlight.js' );
 
 const replacements = {
    __NAMESPACE__ : 'aqire',
@@ -47,19 +46,6 @@ module.exports = {
           .options( {
              raw     : true,
              linkify : false,
-             /*highlight( str, lang ) {
-                if ( lang ) {
-                   //如果是示例代码块
-                   if ( lang === 'demo' ) {
-                      return '<example/>';
-                   }
-                   // 使用 highlight.js美化代码块
-                   if ( hljs.getLanguage( lang ) ) {
-                      return hljs.highlight( lang, str, true ).value;
-                   }
-                }
-                return '';
-             },*/
              // 定义处理规则
              preprocess( MarkdownIt, source ) {
                 const rules = MarkdownIt.renderer.rules;
