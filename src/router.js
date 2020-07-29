@@ -167,11 +167,12 @@ function createNavigation() {
  * @return {{pathStr: string, parent: [], title: string, order: *}}
  */
 function setNav( parsed ) {
-   const nav = NAV[parsed.path];
+   const nav = NAV[parsed.path] || {};
    return {
       ...nav,
       ...parsed,
-      title : nav && nav.title || parsed.filename
+      order : nav.order || 99999,
+      title : nav.title || parsed.filename
    };
 }
 

@@ -1,5 +1,12 @@
 {
-  "/explain": ["文档编写", -1],
-  "/overview": ["介绍", 1],
-  "/form": ["表单"]
+  "/explain": {
+    "title": "文档编写"
+  },
+  "/overview": {
+    "title": "介绍",
+    "order": 1
+  },
+  "/form": {
+    "title": "表单"
+  }
 }
