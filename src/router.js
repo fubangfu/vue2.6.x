@@ -1,5 +1,9 @@
 /**
- * router2
+ * 将views目录下的 *.md文件按照目录结构自动配置路由和导航
+ * 将views目录下的 *.vue示例文件装载到同级目录的 *.md文件组件中
+ *
+ * 注意：md、vue文件命名规则：字母、横杠
+ * 注意：每个子级目录中md文件名必须与目录同名
  * @author      fubangfu2015@163.com
  * @date        2020/7/29
  * --------------------------------------------
@@ -34,10 +38,7 @@ function createRoutes() {
 
    // 示例缓存
    const exampleMapper = {};
-
-   // 将views目录下的 *.md文件按照目录结构自动配置路由
-   // 将views目录下的 *.vue示例文件装载到 *.md文件组件中
-   // 注意：md、vue文件命名规则：字母、横杠
+   // 获取 pages目录下的 *.md  *.vue文件
    const pageContext = require.context(
        './pages',
        true,

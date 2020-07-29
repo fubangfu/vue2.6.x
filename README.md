@@ -19,11 +19,10 @@ yarn serve
 ├─ public<br>
 ├─ src<br>
 │   ├─ assets<br>
-│   ├─ components       API文档页面结构相关组件<br>
+│   ├─ components       API文档相关组件<br>
 │   ├─ mixins           
-│   ├─ packages         UI组件源码<br>
-│   ├─ views            API文档<br>
-│   ├─ example.js       自动将 `src/views` 目录下的示例组件装载到 `src/views` 目录下的组件文档中<br>
+│   ├─ packages         UI组件<br>
+│   ├─ pages            API文档<br>
 │   ├─ navigation.json  导航目录中文描述及排序设置<br>
-│   └─ router.js        自动根据 `src/views`的目录结构配置路由和导航结构<br>
+│   └─ router.js        自动根据 `src/pages`的目录结构配置路由和导航结构<br>
 ├─ vue.config.js        vue-cli 配置<br> 
