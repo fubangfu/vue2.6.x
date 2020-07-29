@@ -1,17 +1,20 @@
+/**
+ * router2
+ * @author      fubangfu2015@163.com
+ * @date        2020/7/29
+ * --------------------------------------------
+ */
+import NAV from './navigation.json';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import navigation from './navigation.json';
-import PageView from './components/page/PageView';
 
-/**
- * 路由配置，自动将views下的MD组件文档按照目录机构配置路由和导航
- * 所有路由都是懒加载的
- */
 Vue.use( VueRouter );
-// 添加__pages__变量，给导航组件使用
-const routes = Vue.prototype.__pages__ = getRoutes();
-//
-const router = new VueRouter( {
+// 页面缓存
+const pageMapper = {};
+const routes = createRoutes();
+Vue.prototype.__pages__ = createNavigation();
+
+export default new VueRouter( {
    mode   : 'hash',
    base   : process.env.BASE_URL,
    routes : [
@@ -23,131 +26,159 @@ const router = new VueRouter( {
    ]
 } );
 
-export default router;
+// 创建路由
+function createRoutes() {
+   const R_VUE = /\.vue$/;
+   const R_FILENAME = /\.\w+$/;
+   const R_EXEC_MD = /[\\/]([\w-]+)[\\/]([\w-]+)\.md$/;
 
-/**
- * 根据文件目录结构，构建路由
- * @return {[]}
- */
-function getRoutes() {
+   // 示例缓存
+   const exampleMapper = {};
 
-   const pageMapper = {};
-   const routeViews = [];
-   // 将views目录下的.md文件按照目录结构自动配置路由
-   // 注意：md文件命名规则：字母和横杠
+   // 将views目录下的 *.md文件按照目录结构自动配置路由
+   // 将views目录下的 *.vue示例文件装载到 *.md文件组件中
+   // 注意：md、vue文件命名规则：字母、横杠
    const pageContext = require.context(
-       './views',
+       './pages',
        true,
-       /\.md$/,
+       /\.(md|vue)$/,
        'lazy' // 懒加载
    );
-   // 解析路径
-   pageContext.keys().map( pathStr => {
-      // 按目录层次分割成数组
-      const paths = splitPath( pathStr );
-      // 路由路径
-      const path = `/${paths.join( '\/' )}`;
-      // 创建路由
-      const route = createRoute( paths, path );
-      //
-      return pageMapper[path] = {
-         ...route,
-         // 延时加载的关键：返回一个函数，而不是直接执行 pageContext( pathStr )
-         // pageContext( pathStr )执行时才会获取对应的组件配置对象，并会返回一个promise
-         // Vue 支持异步组件。
-         component : () => pageContext( pathStr )
-      };
-   } )
-       .forEach( setChildren );
 
-   return routeViews;
-
-   /**
-    * 设定子路由
-    * @param route
-    */
-   function setChildren( route ) {
-      const parent = setParent( route );
-      if ( parent && (
-          parent.children || (parent.children = [])
-      ) ) {
-         parent.children.push( route );
+   // 创建并返回路由
+   return pageContext.keys().map( pathStr => {
+      const exec = R_EXEC_MD.exec( pathStr );
+      // 如果md文件的文件名与父级目录同名
+      // 则建立路由和导航
+      if ( exec && exec[1] === exec[2] ) {
+         const parsed = parse( pathStr );
+         if ( !pageMapper[parsed.path] ) {
+            // 缓存页面配置
+            pageMapper[parsed.path] = setNav( parsed );
+            return createRoute( parsed );
+         }
+         // 如果是 vue示例文件
+      } else if ( R_VUE.test( pathStr ) ) {
+         const parsed = parse( pathStr );
+         const example = exampleMapper[parsed.path] || {};
+         // 懒加载的关键：
+         // 绑定一个函数，而不是直接执行 pageContext( id )
+         // 执行pageContext( id )，将直接加载对应组件
+         example[parsed.filename] = () => pageContext( parsed.id );
+         exampleMapper[parsed.path] = example;
       }
+   } )
+       .filter( Boolean );
+
+
+   // 创建路由
+   function createRoute( parsed ) {
+      return {
+         path : parsed.path,
+         // 懒加载的关键：
+         // 返回一个函数，而不是直接执行 pageContext( id )
+         // 执行pageContext( id )，将直接加载对应组件
+         component() {
+            return pageContext( parsed.id ).then( module => {
+               // 将同级的vue示例组件注册到md页面组件中
+               registerExample( parsed.path, module.default );
+               return module;
+            } );
+         }
+      };
    }
 
-   /**
-    * 设定父路由
-    * @param route
-    */
-   function setParent( route ) {
-      // 如果没有父级路由
-      // 说明他是最顶层的路由
-      if ( !route.parent ) {
-         routeViews.push( route );
+   // 注册示例组件
+   function registerExample( path, component ) {
+      const examples = exampleMapper[path];
+      // 将vue示例组件注册到md页面组件中
+      if ( examples ) component.components = examples;
+   }
+
+   // 解析文件路径
+   function parse( path ) {
+      const splited = path.substr( 2 ).split( /[\\/]/ );
+      const file = splited.pop();
+      return {
+         // ./form/btn/btn.md
+         id       : path,
+         // btn.md
+         file,
+         // btn
+         filename : file.replace( R_FILENAME, '' ),
+         // ['form','btn']
+         paths    : splited,
+         // /form/btn
+         path     : join( splited ),
+         // ['form']
+         parent   : splited.slice( 0, -1 )
+      };
+   }
+}
+
+// 创建导航
+function createNavigation() {
+   const roots = [];
+   //
+   Object.keys( pageMapper ).forEach( path => {
+      const page = pageMapper[path];
+      const parent = getParent( page );
+      // 如果有父级导航
+      if ( parent && (
+          parent.children
+          || (parent.children = [])
+      ) ) {
+         parent.children.push( page );
+      }
+   } );
+
+   return roots;
+
+   // 获取父级或创建父级导航
+   function getParent( page ) {
+      // 根导航
+      if ( !page.parent.length ) {
+         roots.push( page );
          return;
       }
-      const paths = route.parent;
-      // 父路由路径
-      const parentPath = `/${paths.join( '\/' )}`;
-      let parent = pageMapper[parentPath];
-      // 如果没有真实md组件
-      if ( !parent ) {
-         // 那么就创建一个
-         parent = createRoute( paths, parentPath );
-         parent.path = parentPath;
-         // 给父路由绑定一个router-view组件
-         // 使它能正常的路由到子路由上
-         parent.component = PageView;
-         // parent.redirect = route.path;
-         pageMapper[parentPath] = parent;
-         // 继续设定它的父级路由
-         setParent( parent );
+      const path = join( page.parent );
+      // 如果不存在父级导航
+      if ( !pageMapper[path] ) {
+         const parent = page.parent.slice();
+         const parsed = setNav( {
+            path,
+            paths    : parent,
+            filename : parent.pop(),
+            parent
+         } );
+         pageMapper[path] = parsed;
+         getParent( parsed );
       }
-      return parent;
-   }
 
-   /**
-    * 创建路由对象
-    * @param paths
-    * @param path
-    * @return {{title: *, order: (*|number)} & {path: *, parent: (boolean|*), paths: *}}
-    */
-   function createRoute( paths, path ) {
-      // 获取路由导航配置信息
-      const nav = getNav( path, paths );
-      return Object.assign( nav, {
-         path,
-         paths,
-         // 如果没有父级路由，则值为false
-         parent : paths.length > 1 && paths.slice( 0, -1 )
-      } );
+      return pageMapper[path];
    }
 
 }
 
 /**
- * 获取导航配置信息
- * @param path
- * @param paths
- * @return {{title: *, order: (*|number)}}
+ * 设置导航信息
+ * @param parsed
+ * @return {{pathStr: string, parent: [], title: string, order: *}}
  */
-function getNav( path, paths ) {
-   const data = navigation[path];
+function setNav( parsed ) {
+   const nav = NAV[parsed.path];
    return {
-      // order值越小，越排在最前面
-      order : data && data[1] || 99,
-      title : Array.isArray( data ) && data[0]
-          || data || paths.slice( -1 )[0]
+      ...nav,
+      ...parsed,
+      title : nav && nav.title || parsed.filename
    };
 }
 
 /**
- * 拆分文件路径
- * @param path
+ * 转为路由路径
+ * @param paths
+ * @return {string}
  */
-function splitPath( path ) {
-   return path.replace( /\.md$/, '' )
-       .split( '\/' )
-       .filter( p => !p.includes( '\.' ) );
+function join( paths ) {
+   return `/${paths.join( '\/' )}`;
 }
-

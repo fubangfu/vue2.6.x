@@ -5,7 +5,8 @@
 >> Input 为受控组件，它总会显示 Vue 绑定值 。<br>
 >> 支持绑定 v-model 指令，但不支持其修饰符功能。
 
-<example name="first">
+
+<demo>
 
 ```html
  <aqire-input v-model="text" placeholder="请输入内容"></aqire-input>
@@ -22,11 +23,7 @@ export default {
 }
 ```
 
-</example>
-
-
-
-
+</demo>
 
 ### 密码输入
 设置`password`属性，可输入密码。

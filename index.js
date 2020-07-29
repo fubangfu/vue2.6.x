@@ -4,9 +4,9 @@
  * @data    2020/7/12
  * --------------------------------------
  */
-import AqireInput from './packages/input/AqireInput';
+import AqireInput from './src/packages/input/AqireInput';
 import { isGlobal } from '@aqire/common/src/type';
-import './packages/theme/index.scss';
+import './src/packages/theme/index.scss';
 
 const components = [
    AqireInput
