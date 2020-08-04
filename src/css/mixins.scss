@@ -7,8 +7,8 @@
  */
 @import "src/css/constant";
 @import "~@aqire/css/src/bem/bem";
+@import "~@aqire/css/src/mixins";
 @import "src/css/mixins/media";
-@import "src/css/mixins/position";
 @import "src/css/mixins/transition";
 
 /*
@@ -22,60 +22,4 @@
   font-size: $--font-size-base;
   line-height: $--line-height-base;
   list-style: none;
-}
-
-/*
- * 清除浮动
- *------------------------*/
-@mixin clearFix {
-  zoom: 1;
-  *zoom: 1;
-
-  &:after, &:before {
-    display: table;
-    content: " ";
-    height: 0;
-  }
-
-  &:after {
-    clear: both;
-    /*替换inline为block，因为clear:both不能应用于行内元素*/
-    display: block;
-    overflow: hidden;
-    visibility: hidden;
-  }
-}
-
-/*
- * 超出的文字内容显示省略号
- * width  多少宽度后的文字显示省略号
- * rows   多少行后的文字显示省略号
- *--------------------------*/
-@mixin textEllipsis($width:0, $rows:1) {
-  overflow: hidden;
-  -ms-text-overflow: ellipsis;
-  text-overflow: ellipsis;
-  @if ($width != 0) {
-    width: $width;
-  }
-  @if ($rows > 1) {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: $rows;
-    line-clamp: $rows;
-  } @else {
-    white-space: nowrap;
-  }
-}
-
-/*
- * 使里面的元素垂直居中
- *---------------------------------*/
-@mixin middleContext() {
-  &:before {
-    content: "";
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-  }
 }

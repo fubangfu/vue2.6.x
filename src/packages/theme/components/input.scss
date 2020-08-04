@@ -9,8 +9,6 @@
 
 /* 文本输入框
 ------------------------------*/
-@include b(ipt-text) {
-  @include e(ipt) {
-
-  }
+@include b(input) {
+  
 }

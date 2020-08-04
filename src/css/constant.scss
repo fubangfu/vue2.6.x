@@ -6,3 +6,33 @@
  * --------------------------------------------
  */
 @import "~@aqire/css/src/constant";
+
+// height
+$--height-base: 32px;
+$--height-sm: 24px;
+$--height-lg: 40px;
+// font
+$--font-size-base: 14px;
+$--font-size-lg: $--font-size-base + 2px;
+$--font-size-sm: 12px;
+$--line-height-base: 1.5715;
+$--border-radius-base: 2px;
+// color
+$--normal-color: #d9d9d9;
+$--white: #fff;
+$--black: #000;
+$--text-color: fade($--black, 65%);
+
+// Shadow
+$--shadow-color: rgba(0, 0, 0, 0.15);
+$--shadow-1-up: 0 -6px 16px -8px rgba(0, 0, 0, 0.08), 0 -9px 28px 0 rgba(0, 0, 0, 0.05),
+0 -12px 48px 16px rgba(0, 0, 0, 0.03);
+$--shadow-1-down: 0 6px 16px -8px rgba(0, 0, 0, 0.08), 0 9px 28px 0 rgba(0, 0, 0, 0.05),
+0 12px 48px 16px rgba(0, 0, 0, 0.03);
+$--shadow-1-left: -6px 0 16px -8px rgba(0, 0, 0, 0.08), -9px 0 28px 0 rgba(0, 0, 0, 0.05),
+-12px 0 48px 16px rgba(0, 0, 0, 0.03);
+$--shadow-1-right: 6px 0 16px -8px rgba(0, 0, 0, 0.08), 9px 0 28px 0 rgba(0, 0, 0, 0.05),
+12px 0 48px 16px rgba(0, 0, 0, 0.03);
+$--shadow-2: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+0 9px 28px 8px rgba(0, 0, 0, 0.05);
+$--box-shadow-base: $--shadow-2;

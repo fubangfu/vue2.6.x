@@ -2,7 +2,7 @@
     <component
         :is="needWrap ? 'div' : 'AqireChild'"
         class="aqire-input-wrap"
-        :class="className">
+        :class="wrapClass">
         <!-- textarea -->
         <textarea
             v-if="isTextarea"
@@ -72,8 +72,8 @@
                     inputType !== 'textarea' && 'text'
                 );
          },
-         // class
-         className() {
+         // wrapClass
+         wrapClass() {
             return `aqire-input-${this.inputType}`;
          },
          //
