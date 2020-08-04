@@ -1,10 +1,10 @@
 <template>
-    <div class="page-header">
+    <div class="aqire-app-header">
         <img alt="logo"
-             class="page-header-logo"
+             class="aqire-app-header__logo"
              @click="onClick"
              src="../../assets/logo.png">
-        <h1>{{ name }} UI <span v-html="version"></span></h1>
+        <h1 class="aqire-app-header__title">{{ name }} UI <span v-html="version"></span></h1>
     </div>
 </template>
 
@@ -29,14 +29,14 @@ export default {
 
 @import "../../assets/css/app";
 
-.page-header {
+@include b(app-header) {
     height: 60px;
     padding: 10px 20px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
     background: #fff;
     @include transition(background-color);
 
-    h1 {
+    @include e(title) {
         display: inline-block;
         font-size: 20px;
         font-weight: 800;
@@ -51,7 +51,8 @@ export default {
         }
     }
 
-    &-logo {
+
+    @include e(logo) {
         width: auto;
         height: auto;
         max-width: 100%;
@@ -59,7 +60,7 @@ export default {
         display: inline-block;
         margin-left: $font-base-size;
 
-        &:hover {
+        @include pseudo(hover) {
             cursor: pointer;
         }
     }
