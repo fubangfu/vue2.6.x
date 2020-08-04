@@ -24,10 +24,10 @@ export default {
         const exampleSlot = parent.$scopedSlots.default;
 
         return (
-            <div class="example-wrap">
-                <div class="example-demo">{defaultSlot && defaultSlot()}</div>
-                <div class="example-code" v-show={this.show}>{exampleSlot && exampleSlot()}</div>
-                <div class="example-open" v-on:click={this.toggleShow}>
+            <div class="aqire-app-example">
+                <div class="aqire-app-example__demo">{defaultSlot && defaultSlot()}</div>
+                <div class="aqire-app-example__code" v-show={this.show}>{exampleSlot && exampleSlot()}</div>
+                <div class="aqire-app-example__open" v-on:click={this.toggleShow}>
                     <span>{this.label}</span>
                 </div>
             </div>
@@ -37,68 +37,63 @@ export default {
 </script>
 <style lang="scss" scoped>
 
-.example-wrap {
+@import "../assets/css/app";
+
+@include b(app-example) {
     border: 1px solid #ebebeb;
     border-radius: 2px;
+    @include transition(box-shadow);
 
-    &:hover {
+    // :hover
+    @include pseudo(hover) {
         box-shadow: 0 0 8px 0 rgba(232, 237, 250, .6), 0 2px 4px 0 rgba(232, 237, 250, .5);
     }
 
-    & > .example-demo {
-        /*display: none;*/
+    // 示例代码
+    @include e(demo) {
         position: relative;
         padding: 25px 35px;
-        margin-top: 1em;
+        margin-top: $font-base-size;
         overflow-x: auto;
-
-        &:before {
+        // :before
+        @include pseudo(before) {
             position: absolute;
-            top: 0;
-            right: 0;
+            @include topRight();
             color: #ccc;
             text-align: right;
-            font-size: 0.75em;
+            font-size: $font-base-size * .75;
             padding: 5px 10px 0;
             line-height: 15px;
             height: 15px;
             font-weight: 400;
             content: '示例';
         }
-
     }
 
-    & > .example-code,
-    & > .example-open {
+    // 代码展示
+    @include e((code, open)) {
         border-top: inherit;
     }
 
-    & > .example-code {
-        & > p {
-            padding-left: 25px;
-        }
-    }
-
-    & > .example-open {
+    // 代码展示/隐藏
+    @include e(open) {
         text-align: center;
 
-        & span {
+        span {
             display: block;
             height: 32px;
             line-height: 32px;
             font-size: 14px;
             color: #d3dce6;
+            @include transitionColor;
         }
-    }
 
-    &:hover {
-        .example-open {
+        // hover
+        @include pseudo(hover) {
+            cursor: pointer;
+
             span {
                 color: inherit;
-            }
-
-            &:hover {
-                cursor: pointer;
             }
         }
     }
