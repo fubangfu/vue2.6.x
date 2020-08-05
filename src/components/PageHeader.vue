@@ -3,13 +3,13 @@
         <img alt="logo"
              :class="css.logo"
              @click="onClick"
-             src="../../assets/logo.png">
+             src="../assets/logo.png">
         <h1 :class="css.title">{{ name }} UI <span v-html="version"></span></h1>
     </div>
 </template>
 
 <script lang="js">
-import helper from '../../css/helper';
+import helper from '../css/helper';
 
 const bem = helper( 'header' );
 
@@ -41,7 +41,7 @@ export default {
 
 <style scoped lang="scss">
 
-@import "../../assets/css/app";
+@import "../assets/css/app";
 
 @include b(header) {
     height: 60px;

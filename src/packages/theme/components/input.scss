@@ -5,10 +5,22 @@
  * @data    2020/7/18
  * --------------------------------------
  */
-@import "../../../../../../node_modules/@aqire/css/src/bem/bem";
+@import "../../../css/mixins";
 
-/* 文本输入框
+/* 输入控件
 ------------------------------*/
 @include b(input) {
-  
+  @include reset();
+  display: inline-block;
+
+  /* 单行文本 */
+  @include e(text) {
+
+  }
+
+  /* 多行文本 */
+  @include e(textarea) {
+
+  }
+
 }

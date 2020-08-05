@@ -43,9 +43,9 @@
 }
 </style>
 <script>
-import PageHeader from './components/page/PageHeader';
-import PageNav from './components/page/PageNav';
-import PageBody from './components/page/PageBody';
+import PageHeader from './components/PageHeader';
+import PageNav from './components/PageNav';
+import PageBody from './components/PageBody';
 
 export default {
     components : {

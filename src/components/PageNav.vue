@@ -30,7 +30,7 @@
 
 <script lang="js">
 
-import helper from '../../css/helper';
+import helper from '../css/helper';
 import { mix } from '@aqire/common/src/lang/object';
 
 const bem = helper( 'nav' );
@@ -74,7 +74,7 @@ export default {
 
 <style scoped lang="scss">
 
-@import "../../assets/css/app";
+@import "../assets/css/app";
 
 @include b(nav) {
     @include reset;

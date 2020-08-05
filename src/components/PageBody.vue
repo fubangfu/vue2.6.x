@@ -12,7 +12,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../assets/css/app";
+@import "../assets/css/app";
 
 .code-page {
     section {
