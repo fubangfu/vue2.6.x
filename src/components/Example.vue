@@ -1,6 +1,7 @@
 <script lang="jsx">
 import helper from '../css/helper';
 
+const bem = helper( 'example' );
 export default {
     name     : 'Example',
     data() {
@@ -13,7 +14,6 @@ export default {
             return this.show ? '隐藏代码' : '显示代码';
         },
         css() {
-            const bem = helper( 'example' );
             return {
                 example : bem(),
                 demo    : bem( 'demo' ),

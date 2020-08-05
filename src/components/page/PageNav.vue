@@ -33,17 +33,15 @@
 import helper from '../../css/helper';
 import { mix } from '@aqire/common/src/lang/object';
 
+const bem = helper( 'nav' );
+
 export default {
     name     : 'PageNav',
     computed : {
         list() {
             return this.sort( this.__pages__ || [] );
         },
-        bem() {
-            return helper( 'nav' );
-        },
         css() {
-            const bem = this.bem;
             return mix( bem, {
                 nav       : bem(),
                 body      : bem( 'body' ),

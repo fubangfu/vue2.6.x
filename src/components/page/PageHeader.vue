@@ -9,8 +9,9 @@
 </template>
 
 <script lang="js">
-
 import helper from '../../css/helper';
+
+const bem = helper( 'header' );
 
 export default {
     name     : 'PageHeader',
@@ -22,7 +23,7 @@ export default {
     },
     computed : {
         css() {
-            const bem = helper( 'header' );
+
             return {
                 header : bem(),
                 logo   : bem( 'logo' ),
