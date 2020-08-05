@@ -1,4 +1,6 @@
 <script lang="jsx">
+import helper from '../css/helper';
+
 export default {
     name     : 'Example',
     data() {
@@ -9,6 +11,15 @@ export default {
     computed : {
         label() {
             return this.show ? '隐藏代码' : '显示代码';
+        },
+        css() {
+            const bem = helper( 'example' );
+            return {
+                example : bem(),
+                demo    : bem( 'demo' ),
+                code    : bem( 'code' ),
+                open    : bem( 'open' )
+            };
         }
     },
     methods  : {
@@ -17,17 +28,17 @@ export default {
         }
     },
     render() {
+        const { css, $scopedSlots, $parent } = this;
         // 示例内容
-        const defaultSlot = this.$scopedSlots.default;
+        const defaultSlot = $scopedSlots.default;
         // 示例代码展示
-        const parent = this.$parent;
-        const exampleSlot = parent.$scopedSlots.default;
+        const exampleSlot = $parent.$scopedSlots.default;
 
         return (
-            <div class="aqire-app-example">
-                <div class="aqire-app-example__demo">{defaultSlot && defaultSlot()}</div>
-                <div class="aqire-app-example__code" v-show={this.show}>{exampleSlot && exampleSlot()}</div>
-                <div class="aqire-app-example__open" v-on:click={this.toggleShow}>
+            <div class={css.example}>
+                <div class={css.demo}>{defaultSlot && defaultSlot()}</div>
+                <div class={css.code} v-show={this.show}>{exampleSlot && exampleSlot()}</div>
+                <div class={css.open} v-on:click={this.toggleShow}>
                     <span>{this.label}</span>
                 </div>
             </div>
@@ -39,7 +50,7 @@ export default {
 
 @import "../assets/css/app";
 
-@include b(app-example) {
+@include b(example) {
     border: 1px solid #ebebeb;
     border-radius: 2px;
     @include transition(box-shadow);

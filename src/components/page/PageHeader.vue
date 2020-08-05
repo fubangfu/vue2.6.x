@@ -1,24 +1,36 @@
 <template>
-    <div class="aqire-app-header">
+    <div :class="css.header">
         <img alt="logo"
-             class="aqire-app-header__logo"
+             :class="css.logo"
              @click="onClick"
              src="../../assets/logo.png">
-        <h1 class="aqire-app-header__title">{{ name }} UI <span v-html="version"></span></h1>
+        <h1 :class="css.title">{{ name }} UI <span v-html="version"></span></h1>
     </div>
 </template>
 
 <script lang="js">
 
+import helper from '../../css/helper';
+
 export default {
-    name    : 'PageHeader',
+    name     : 'PageHeader',
     data() {
         return {
             name    : __NAMESPACE__,
             version : __VERSION__
         };
     },
-    methods : {
+    computed : {
+        css() {
+            const bem = helper( 'header' );
+            return {
+                header : bem(),
+                logo   : bem( 'logo' ),
+                title  : bem( 'title' )
+            };
+        }
+    },
+    methods  : {
         onClick() {
             this.$router.replace( '/' );
         }
@@ -30,7 +42,7 @@ export default {
 
 @import "../../assets/css/app";
 
-@include b(app-header) {
+@include b(header) {
     height: 60px;
     padding: 10px 20px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);

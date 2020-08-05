@@ -1,27 +1,23 @@
 <template>
-    <div class="aqire-app-sidebar">
-        <div class="aqire-app-nav">
-            <ul class="aqire-app-nav__root">
+    <div :class="css.nav">
+        <div :class="css.body">
+            <ul :class="css.root">
                 <li :key="i"
-                    class="aqire-app-nav__root-li"
+                    :class="css.rootLi"
                     v-for="(root, i) in list">
-                    <h3 class="aqire-app-nav__root-title">{{ root.title }}</h3>
-                    <ul class="aqire-app-nav__sec"
+                    <h3 :class="css.rootTitle">{{ root.title }}</h3>
+                    <ul :class="css.sec"
                         v-if="root.children && root.children.length">
                         <li v-for="(sub, ii) in root.children" :key="ii">
-                            <a class="aqire-app-nav__link"
+                            <a :class="css('link',{current : isCurrentPath(sub)})"
                                v-html="sub.title"
-                               :class="{
-                                   'aqire-app-nav__link--current' : isCurrentPath(sub)
-                               }"
                                @click.prevent="linkClick(sub)"></a>
-                            <ul class="aqire-app-nav__ul" v-if="sub.children && sub.children.length">
-                                <li v-for="(sc, ii) in sub.children" :key="ii">
-                                    <a class="aqire-app-nav__link"
-                                       v-html="sc.title"
-                                       :class="{
-                                          'aqire-app-nav__link--current' : isCurrentPath(sc)
-                                       }"></a>
+                            <ul :class="css.ul"
+                                v-if="sub.children && sub.children.length">
+                                <li v-for="(sc, ii) in sub.children"
+                                    :key="ii">
+                                    <a v-html="sc.title"
+                                       :class="css('link',{current : isCurrentPath(sc)})"></a>
                                 </li>
                             </ul>
                         </li>
@@ -33,25 +29,44 @@
 </template>
 
 <script lang="js">
+
+import helper from '../../css/helper';
+import { mix } from '@aqire/common/src/lang/object';
+
 export default {
     name     : 'PageNav',
     computed : {
         list() {
             return this.sort( this.__pages__ || [] );
+        },
+        bem() {
+            return helper( 'nav' );
+        },
+        css() {
+            const bem = this.bem;
+            return mix( bem, {
+                nav       : bem(),
+                body      : bem( 'body' ),
+                ul        : bem( 'ul' ),
+                root      : bem( 'root' ),
+                rootLi    : bem( 'root-li' ),
+                rootTitle : bem( 'root-title' ),
+                sec       : bem( 'sec' )
+            } );
         }
     },
     methods  : {
-
+        // 排序
         sort( list ) {
             return list.sort( ( a, b ) => a.order < b.order ? -1 : a.order > b.order ? 1 : 0 );
         },
-
+        // 点击
         linkClick( page ) {
             if ( this.$route.fullPath !== page.path ) {
                 this.$router.push( page.path );
             }
         },
-
+        // 当前路由
         isCurrentPath( page ) {
             return this.$route.fullPath === page.path;
         }
@@ -63,7 +78,7 @@ export default {
 
 @import "../../assets/css/app";
 
-@include b(app-sidebar) {
+@include b(nav) {
     @include reset;
     position: fixed;
     @include topLeft(61px);
@@ -74,10 +89,10 @@ export default {
     -webkit-overflow-scrolling: touch;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
     z-index: 1;
-}
 
-@include b(app-nav) {
-    padding: 20px 0;
+    @include e(body) {
+        padding: 20px 0;
+    }
 
     @include e((ul, root, sec)) {
         @include reset;
@@ -133,5 +148,6 @@ export default {
     }
 
 }
+
 
 </style>
