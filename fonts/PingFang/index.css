@@ -1,0 +1,74 @@
+@charset "UTF-8";
+/**
+ * PingFang
+ * @author      fubangfu
+ * @date        2019/1/15
+ *---------------------------------*/
+@font-face {
+    font-family: "PingFang SC";
+    src: url("./PingFang JT.ttf");
+}
+
+/* 苹方-简体 */
+@font-face {
+    font-family: "PingFang JT";
+    src: local("PingFang JT"), url("./PingFang JT.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.a {
+
+}
+
+/* 苹方-简粗 */
+@font-face {
+    font-family: "PingFang JC";
+    src: local("PingFang JC"), url("./PingFang JC.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 苹方-简细 */
+@font-face {
+    font-family: "PingFang JX";
+    src: local("PingFang JX"), url("./PingFang JX.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 苹方-简 粗体 */
+@font-face {
+    font-family: "PingFang Bold";
+    src: local("PingFang Bold"), url("./PingFang Bold.ttf");
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* 苹方-简 细体 */
+@font-face {
+    font-family: "PingFang Light";
+    src: local("PingFang Light"), url("./PingFang Light.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 苹方-简 常规体 */
+@font-face {
+    font-family: "PingFang-SC-Regular";
+    src: local("PingFang-SC-Regular"), url("./PingFang-SC-Regular.otf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 苹方-简 中粗体 */
+@font-face {
+    font-family: "PingFang-SC-Semibold";
+    src: local("PingFang-SC-Semibold"), url("./PingFang-SC-Semibold.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
