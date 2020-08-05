@@ -9,12 +9,13 @@
 </template>
 
 <script lang="js">
+
 export default {
     name    : 'PageHeader',
     data() {
         return {
-            name    : process.env.VUE_APP__NAMESPACE__,
-            version : process.env.VUE_APP__VERSION__
+            name    : __NAMESPACE__,
+            version : __VERSION__
         };
     },
     methods : {

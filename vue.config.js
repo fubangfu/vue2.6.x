@@ -5,16 +5,13 @@
  * --------------------------------------------
  */
 
+const webpack = require( 'webpack' );
+const pkg = require( './package.json' );
+
 const replacements = {
-   __NAMESPACE__ : 'aqire',
-   __VERSION__   : require( './package.json' ).version
+   __NAMESPACE__ : '"aqire"',
+   __VERSION__   : `"${pkg.version}"`
 };
-
-Object.keys( replacements ).forEach( key => {
-   process.env[`VUE_APP${key}`] = replacements[key];
-} );
-
-process.env.VUE_APP__VERSION__ = require( './package.json' ).version;
 
 function wrapCode( render ) {
    return function ( ...args ) {
@@ -33,6 +30,9 @@ module.exports = {
    configureWebpack    : {
       // mode    : 'development',
       // devtool : 'source-map'
+      plugins : [
+         new webpack.DefinePlugin( replacements )
+      ]
    },
    chainWebpack        : config => {
 
