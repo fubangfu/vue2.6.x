@@ -152,11 +152,11 @@ export default {
         } = this;
 
         const input = isTextarea ? renderTextarea() : renderText();
-        const children = [Input];
+        const children = [input];
 
         return needWrap
             ? this.renderWrap( children )
-            : Input;
+            : input;
     }
 };
 </script>

@@ -16,9 +16,8 @@ Vue.use( VueRouter );
 // 页面缓存
 const pageMapper = {};
 const routes = createRoutes();
-Vue.prototype.__pages__ = createNavigation();
-
-export default new VueRouter( {
+export const pages = createNavigation();
+export const router = new VueRouter( {
    mode   : 'hash',
    base   : process.env.BASE_URL,
    routes : [

@@ -39,7 +39,7 @@ export default {
     name     : 'PageNav',
     computed : {
         list() {
-            return this.sort( this.__pages__ || [] );
+            return this.sort( this.$root.pages || [] );
         },
         css() {
             return mix( bem, {
