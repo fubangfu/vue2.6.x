@@ -1,4 +1,4 @@
-# Input输入
+# Input输入框
 通过鼠标或键盘输入字符
 
 ### 基础用法
@@ -9,7 +9,7 @@
 <demo>
 
 ```html
- <aqire-input v-model="text" placeholder="请输入内容"></aqire-input>
+ <aqire-input v-model="text" placeholder="请输入内容"/>
  <div>input: {{text}}</div>
 ```
 
