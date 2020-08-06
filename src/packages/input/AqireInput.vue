@@ -1,7 +1,7 @@
 <script lang="jsx">
 import { isBlank } from '@aqire/common/src/type';
 import { trimStr } from '@aqire/common/src/lang/string';
-import { addVNodeListener, callVNodeListener } from '../util/VNode';
+import { addVNodeListener, callVNodeListener } from '../util/vnode';
 import helper from '../../css/helper';
 
 const bem = helper( 'input' );
@@ -49,7 +49,7 @@ export default {
                     inputType !== 'textarea' && 'text'
                 );
         },
-        // 需要渲染包裹元素
+        // 需要渲染wrap元素
         needWrap() {
             return this.isTextarea || this.cleanable;
         },
@@ -152,11 +152,11 @@ export default {
         } = this;
 
         const input = isTextarea ? renderTextarea() : renderText();
-        const children = [input];
+        const children = [Input];
 
         return needWrap
             ? this.renderWrap( children )
-            : input;
+            : Input;
     }
 };
 </script>
