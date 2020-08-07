@@ -96,7 +96,7 @@ export default {
             line-height: 32px;
             font-size: 14px;
             color: #d3dce6;
-            @include transitionColor;
+            transition: $--transition-color;
         }
 
         // hover

@@ -14,7 +14,23 @@
   display: inline-block;
 
   /* 单行文本 */
-  @include e(text) {
+  @include e((text, textarea)) {
+    @include reset;
+    position: relative;
+    display: inline-block;
+    padding: 4px 7px;
+    height: $--height;
+    font-size: $--font-size-sm;
+    background-color: $--white;
+    background-image: none;
+    border: $--border;
+    border-radius: $--border-radius-lg;
+    @include transition(all);
+    @include placeholder($--placeholder-color);
+
+    @include pseudo((hover, focus)) {
+
+    }
   }
 
   /* 多行文本 */

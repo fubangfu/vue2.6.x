@@ -14,14 +14,11 @@
 /*
  * reset
  *------------------------*/
-@mixin reset($sizing:null) {
+@mixin reset() {
   margin: 0;
   padding: 0;
-  color: $--text-color;
-  font-size: $--font-size-base;
-  line-height: $--line-height-base;
+  font-size: $--font-size;
+  line-height: $--line-height;
   list-style: none;
-  @if ($sizing == box) {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
 }

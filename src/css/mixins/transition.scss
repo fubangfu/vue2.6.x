@@ -23,36 +23,3 @@ $--transition-svg: all .3s $--bezier-ease-in-out !default;
   }
   transition: $lists
 }
-
-@mixin transitionAll() {
-  transition: $--transition-all;
-}
-
-/* 淡入 */
-@mixin transitionFade() {
-  transition: $--transition-fade;
-}
-
-@mixin transitionFadeLinear() {
-  transition: $--transition-fade-linear;
-}
-
-@mixin transitionMdFade() {
-  transition: $--transition-md-fade;
-}
-
-@mixin transitionBorder() {
-  transition: $--transition-border;
-}
-
-@mixin transitionColor() {
-  transition: $--transition-color;
-}
-
-@mixin transitionSize() {
-  transition: $--transition-size;
-}
-
-@mixin transitionSVG() {
-  transition: $--transition-svg;
-}
